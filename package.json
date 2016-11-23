@@ -1,0 +1,14 @@
+{
+  "name": "TwitterApp",
+  "version": "1.0.0",
+  "description": "Twitter Analytics app to play with API's and libraries.",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.14.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  }
+}
