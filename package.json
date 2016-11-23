@@ -4,7 +4,9 @@
   "description": "Twitter Analytics app to play with API's and libraries.",
   "main": "server.js",
   "dependencies": {
-    "express": "^4.14.0"
+    "express": "^4.14.0",
+    "oauth-1.0a": "^2.0.0",
+    "request": "^2.79.0"
   },
   "devDependencies": {},
   "scripts": {

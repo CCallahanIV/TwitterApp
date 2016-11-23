@@ -14,16 +14,25 @@
   </head>
   <body>
     This is only the beginning.
-    <header>
-      <!-- NAVIGATION GOES HERE -->
+    <header><!-- NAVIGATION GOES HERE -->
     </header>
 
-    <main>
-      <!-- MAIN BODY GOES HERE -->
+    <main><!-- NAVIGATION GOES HERE -->
+      <form>
+        <input id="searchParam" type="text" placeholder="Search Parameter" name="searchParam"><br>
+        <input type="submit" value="submit">
+      </form>
     </main>
-
+    <!-- VENDOR SCRIPTS -->
+    <script
+  src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+    <script src="vendor/scripts/handlebars.js"></script>
+    <script src="vendor/scripts/page.js"></script>
     <!-- MODEL SCRIPTS -->
+    <script src="scripts/model/twitter.js"></script>
     <!-- VIEW SCRIPTS -->
+    <script src="scripts/view/twitterView.js"></script>
     <!-- CONTROLLER SCRIPTS -->
   </body>
 </html>
