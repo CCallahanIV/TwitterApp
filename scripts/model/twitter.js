@@ -1,17 +1,39 @@
-/*twitter.js*/
+/*twitter.js handles managing the model layer and interaction with the Twitter API.*/
 
 (function(module) {
-  twitter = {};
+  twitterObj = {};
 
-  twitter.tweets = [];
+  twitterObj.tweets = [];
+  twitterObj.searchParams = [];
 
-  twitter.searchTweets = function(queryParams){
-    console.log('Search Tweets invoked');
+  //function intializes a GET request to the server and passes query parameters
+  twitterObj.searchTweets = function(queryParams){
     $.get('/searchTwitter', queryParams, function(data){
-      twitter.tweets = JSON.parse(data);
-      console.log(twitter.tweets);
+      twitterObj.tweets = JSON.parse(data).statuses;
+      twitterObjView.clearTweets();
+      twitterObj.renderTweets();
     });
   };
 
-  module.twitter = twitter;
+  //function to render all tweets stored in the twitter object local array.
+  twitterObj.renderTweets = function(){
+    twitterObj.tweets.forEach(function(tweet){
+      var queryParams = {
+        user: tweet.user.screen_name,
+        tweetID: tweet.id_str
+      };
+      $.get('/renderTweets', queryParams, function(data){
+        var renderObj = { 'html': JSON.parse(data).html };
+
+        renderView.renderObject([renderObj], '#tweet-wrapper', '#embed-tweet-template');
+      });
+    });
+  };
+
+  twitterObj.getSearchParams = function() {
+    formatted_data = twitterObj.searchParams.join('&');
+    return formatted_data;
+  };
+
+  module.twitterObj = twitterObj;
 })(window);

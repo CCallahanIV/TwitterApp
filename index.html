@@ -10,18 +10,31 @@
     <link rel="stylesheet" href="styles/layout.css">
     <link rel="stylesheet" href="styles/module.css">
     <!-- TEMPLATE SCRIPTS HERE -->
-
+    <script id="embed-tweet-template" type="text/x-handlebars-template">
+      <!-- EMBED TWEETS HERE -->
+      {{{html}}}<br>
+    </script>
+    <script id="search-parameter-template" type="text/x-handlebars-template">
+      <li>{{param}}</li>
+    </script>
   </head>
   <body>
     This is only the beginning.
     <header><!-- NAVIGATION GOES HERE -->
-    </header>
-
-    <main><!-- NAVIGATION GOES HERE -->
       <form>
         <input id="searchParam" type="text" placeholder="Search Parameter" name="searchParam"><br>
-        <input type="submit" value="submit">
+        <input type="submit" value="Submit">
       </form>
+      <ul id="search-parameter-list">
+
+      </ul>
+      <button id="search-button" type="button">Search</button>
+    </header>
+
+    <main>
+      <section id="tweet-wrapper">
+        Rendered Tweets:
+      </section>
     </main>
     <!-- VENDOR SCRIPTS -->
     <script
@@ -33,6 +46,7 @@
     <script src="scripts/model/twitter.js"></script>
     <!-- VIEW SCRIPTS -->
     <script src="scripts/view/twitterView.js"></script>
+    <script src="scripts/view/renderHandlebars.js"></script>
     <!-- CONTROLLER SCRIPTS -->
   </body>
 </html>
