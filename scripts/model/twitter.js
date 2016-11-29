@@ -5,29 +5,41 @@
 
   twitterObj.tweets = [];
   twitterObj.searchParams = [];
+  twitterObj.renderArray = [];
+  twitterObj.queryObj = {
+    q: '',
+    result_type: 'mixed',
+    lang: 'en',
+    count: '40',
+    since_id: null
+  };
+
 
   //function intializes a GET request to the server and passes query parameters
-  twitterObj.searchTweets = function(queryParams){
-    $.get('/searchTwitter', queryParams, function(data){
+  twitterObj.searchTweets = function(){
+    $.get('/searchTwitter', twitterObj.queryObj, function(data){
       twitterObj.tweets = JSON.parse(data).statuses;
-      twitterObjView.clearTweets();
-      twitterObj.renderTweets();
+      twitterObj.queryObj.since_id = twitterObj.tweets.slice(-1)[0].id;
+
+      twitterObj.getEmbededTweets();
     });
   };
 
   //function to render all tweets stored in the twitter object local array.
-  twitterObj.renderTweets = function(){
+  twitterObj.getEmbededTweets = function(){
     twitterObj.tweets.forEach(function(tweet){
       var queryParams = {
         user: tweet.user.screen_name,
         tweetID: tweet.id_str
       };
-      $.get('/renderTweets', queryParams, function(data){
+      $.get('/getEmbededTweets', queryParams, function(data){
         var renderObj = { 'html': JSON.parse(data).html };
 
-        renderView.renderObject([renderObj], '#tweet-wrapper', '#embed-tweet-template');
+        twitterObj.renderArray.push(renderObj);
       });
     });
+    displayLoop.loopTweets();
+    console.log(twitterObj.renderArray);
   };
 
   twitterObj.getSearchParams = function() {

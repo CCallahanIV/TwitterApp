@@ -42,7 +42,7 @@ app.get('/searchTwitter', function (req, res){
   });
 });
 
-app.get('/renderTweets', function(req, res){
+app.get('/getEmbededTweets', function(req, res){
   // console.log(req);
   var embed_url = ('url=https://twitter.com/' + req.query.user + '/status/' + req.query.tweetID).replace(/\//g, '%2F').replace(':','%3A');
 

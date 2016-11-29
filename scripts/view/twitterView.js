@@ -15,7 +15,8 @@
 
   $('#search-button').on('click', function(){
     //format data received from form and pass to searchTweets
-    twitterObj.searchTweets({q: twitterObj.getSearchParams(), count:'20'});
+    twitterObj.queryObj.q = twitterObj.getSearchParams();
+    twitterObj.searchTweets();
   });
 
   twitterObjView.renderSearchParam = function(){
