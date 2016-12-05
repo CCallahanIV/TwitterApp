@@ -19,6 +19,7 @@
   twitterObj.searchTweets = function(){
     $.get('/searchTwitter', twitterObj.queryObj, function(data){
       twitterObj.tweets = JSON.parse(data).statuses;
+      console.log(twitterObj.tweets);
       twitterObj.queryObj.since_id = twitterObj.tweets.slice(-1)[0].id;
 
       twitterObj.getEmbededTweets();

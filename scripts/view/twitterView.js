@@ -2,9 +2,12 @@
 (function(module) {
   var twitterObjView = {};
 
-  $('header form').on('submit', function(e){
+  $('#search-form').on('submit', function(e){
     e.preventDefault();
     var data = $('#searchParam').val();
+
+    $('#search-form')[0].reset();
+    $('#searchParam').blur();
 
     twitterObj.searchParams.push(data);
     console.log(twitterObj.searchParams);
@@ -17,6 +20,17 @@
     //format data received from form and pass to searchTweets
     twitterObj.queryObj.q = twitterObj.getSearchParams();
     twitterObj.searchTweets();
+  });
+
+  $('#search-parameter-list').on('click', 'a', function(e){
+    e.preventDefault();
+    var param = $(this).parent().text().replace(' | ', '');
+    
+    twitterObj.searchParams.splice( twitterObj.searchParams.indexOf(param), 1);
+    console.log(twitterObj.searchParams);
+
+    $('#search-parameter-list').empty();
+    twitterObjView.renderSearchParam();
   });
 
   twitterObjView.renderSearchParam = function(){

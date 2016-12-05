@@ -5,19 +5,23 @@
   displayLoop.loop = true;
 
   displayLoop.loopTweets = function(){
-    if(displayLoop.loop === true){
-      //run code here
-      if(twitterObj.renderArray.length < 10){
-        twitterObj.searchTweets();
-      };
+    var looping = setInterval(function(){
+      if(!displayLoop.loop){
+        displayLoop.stopLoop();
+      } else {
+        if(!twitterObj.renderArray.length){
+          displayLoop.stopLoop();
+          return;
+      }
       var toRender = twitterObj.renderArray.shift();
       renderView.renderObject([toRender], '#tweet-wrapper', '#embed-tweet-template');
-
-    } else {
-      return;
-    };
-    setTimeout(displayLoop.loopTweets(), 1500);
+      }
+    }, 1500);
   };
+
+  displayLoop.stopLoop = function(){
+    clearInterval(displayLoop.loopTweets);
+  }
 
   module.displayLoop = displayLoop;
 })(window);

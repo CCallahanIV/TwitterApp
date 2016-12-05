@@ -9,21 +9,25 @@
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/layout.css">
     <link rel="stylesheet" href="styles/module.css">
+    <script src="https://use.fontawesome.com/b5a5809bd9.js"></script>
     <!-- TEMPLATE SCRIPTS HERE -->
     <script id="embed-tweet-template" type="text/x-handlebars-template">
       <!-- EMBED TWEETS HERE -->
       {{{html}}}<br>
     </script>
     <script id="search-parameter-template" type="text/x-handlebars-template">
-      <li>{{param}}</li>
+      <li><a href="#"><i class="fa fa-window-close" aria-hidden="true"></i></a> | {{param}}</li>
     </script>
   </head>
   <body>
     This is only the beginning.
     <header><!-- NAVIGATION GOES HERE -->
-      <form>
-        <input id="searchParam" type="text" placeholder="Search Parameter" name="searchParam"><br>
-        <input type="submit" value="Submit">
+      <form id="search-form">
+        <div class="search-container">
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <input id="searchParam" type="text" placeholder="Search Parameter" name="searchParam"><br>
+          <input type="submit" value="Submit">
+        </div>
       </form>
       <ul id="search-parameter-list">
 
