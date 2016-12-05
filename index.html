@@ -9,19 +9,36 @@
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/layout.css">
     <link rel="stylesheet" href="styles/module.css">
+    <script src="https://use.fontawesome.com/b5a5809bd9.js"></script>
     <!-- TEMPLATE SCRIPTS HERE -->
-
+    <script id="embed-tweet-template" type="text/x-handlebars-template">
+      <!-- EMBED TWEETS HERE -->
+      {{{html}}}<br>
+    </script>
+    <script id="search-parameter-template" type="text/x-handlebars-template">
+      <li><a href="#"><i class="fa fa-window-close" aria-hidden="true"></i></a> | {{param}}</li>
+    </script>
   </head>
   <body>
     This is only the beginning.
     <header><!-- NAVIGATION GOES HERE -->
+      <form id="search-form">
+        <div class="search-container">
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <input id="searchParam" type="text" placeholder="Search Parameter" name="searchParam"><br>
+          <input type="submit" value="Submit">
+        </div>
+      </form>
+      <ul id="search-parameter-list">
+
+      </ul>
+      <button id="search-button" type="button">Search</button>
     </header>
 
-    <main><!-- NAVIGATION GOES HERE -->
-      <form>
-        <input id="searchParam" type="text" placeholder="Search Parameter" name="searchParam"><br>
-        <input type="submit" value="submit">
-      </form>
+    <main>
+      <section id="tweet-wrapper">
+        Rendered Tweets:
+      </section>
     </main>
     <!-- VENDOR SCRIPTS -->
     <script
@@ -33,6 +50,8 @@
     <script src="scripts/model/twitter.js"></script>
     <!-- VIEW SCRIPTS -->
     <script src="scripts/view/twitterView.js"></script>
+    <script src="scripts/view/renderHandlebars.js"></script>
+    <script src="scripts/view/displayLoop.js"></script>
     <!-- CONTROLLER SCRIPTS -->
   </body>
 </html>

@@ -1,4 +1,3 @@
-// Let's build a server!
 var express = require('express'),
   port = process.env.PORT || 3000,
   app = express();
@@ -26,6 +25,7 @@ var token = {
 
 app.get('/searchTwitter', function (req, res){
   //format URL with search prompts
+  // console.log(req);
   var request_data = {
     url: 'https://api.twitter.com/1.1/search/tweets.json' + req._parsedUrl.search,
     method: 'GET'
@@ -38,6 +38,26 @@ app.get('/searchTwitter', function (req, res){
     headers: oauth.toHeader(oauth.authorize(request_data, token))
   }, function(error, response, body) {
     //return received data as text to client
+    res.send(body);
+  });
+});
+
+app.get('/getEmbededTweets', function(req, res){
+  // console.log(req);
+  var embed_url = ('url=https://twitter.com/' + req.query.user + '/status/' + req.query.tweetID).replace(/\//g, '%2F').replace(':','%3A');
+
+  var request_data = {
+    url: 'https://publish.twitter.com/oembed?' + embed_url,
+    method: 'GET'
+  };
+
+  console.log(request_data.url);
+
+  request({
+    url:request_data.url,
+    method: request_data.method
+    // headers: oauth.toHeader(oauth.authorize(request_data, token))
+  }, function(err, response, body){
     res.send(body);
   });
 });
