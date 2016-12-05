@@ -9,8 +9,8 @@ var request = require('request');
 
 var oauth = OAuth({
   consumer: {
-    key: process.env.API_KEY,
-    secret: process.env.API_SECRET
+    key: '26Yuusfl6ThUHtDXQTUOw5Ed9',
+    secret: 'wfqF3CT786sxqARAuwqESsUQXFPxOPuPto5GGKMPyidEiYyic0'
   },
   signature_method: 'HMAC-SHA1',
   hash_function: function(base_string, key) {
